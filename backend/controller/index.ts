@@ -1,4 +1,4 @@
 import healthCheck from "./healthCheck";
-import executor from "./executor";
+import testExecutor from "./testExecutor";
 
-export { healthCheck, executor };
+export { healthCheck, testExecutor };

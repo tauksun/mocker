@@ -21,7 +21,9 @@ const prettifyCode = async ({
       result: prettyCode,
     };
   } catch (error) {
-    logger(`Error occured while prettifying code : `, { error });
+    logger.f_error(`Error occured while prettifying code : `, {
+      error,
+    });
     return { error, result: null };
   }
 };

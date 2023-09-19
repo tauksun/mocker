@@ -16,6 +16,7 @@ echo 'Compiling TypeScript...'
 echo 'Copying runtime environemnts & their ldd ...'
 cp -r ./environments ./dist
 cp -r ./node_modules ./dist
+cp -r ./logs ./dist
 
 cd ..
 
