@@ -1,3 +1,4 @@
 import execute from "./execute";
+import { connectToDB, getDBConnection } from "./dbConnection";
 
-export { execute };
+export { execute, connectToDB, getDBConnection };
