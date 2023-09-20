@@ -8,14 +8,14 @@ const executor = async (req: Request, res: Response) => {
 
     const payload = req.body;
     const headers = req.headers;
-    const queryParmas = req.query;
+    const queryParams = req.query;
     const pathParams = req.params;
 
     // Execute User Code //
     const { error, result } = await execute({
       code: payload && payload.code,
       headers,
-      queryParmas,
+      queryParams,
       pathParams,
     });
 
@@ -27,6 +27,8 @@ const executor = async (req: Request, res: Response) => {
       req,
       res,
       data: result,
+      responeType: "json",
+      status: 200,
     });
   } catch (error) {
     logger(`Error occured in executor : `, { error });

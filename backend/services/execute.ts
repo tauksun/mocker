@@ -6,12 +6,12 @@ import templateCode from "./executionTemplate";
 const execute = async ({
   code,
   headers,
-  queryParmas,
+  queryParams,
   pathParams,
 }: {
   code: string;
   headers: any;
-  queryParmas: any;
+  queryParams: any;
   pathParams: any;
 }): Promise<{
   error?: any;
@@ -29,7 +29,7 @@ const execute = async ({
 
     const templateWrappedCode = templateCode({
       headers,
-      queryParmas,
+      queryParams,
       pathParams,
       code: Buffer.from(code),
     });
@@ -39,7 +39,8 @@ const execute = async ({
       {}
     );
 
-    result = result && result.toString();
+    result = (result && result.toString("utf8", 0, result.length - 1)) || "";
+    result = JSON.parse(result);
     return { result };
   } catch (error) {
     logger(`Error occured while executing user code in a new process : `, {
