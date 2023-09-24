@@ -23,7 +23,7 @@ const prettifyCode = async ({ code }: { code: string }) => {
     return { error: null, prettifyError, formattedCode };
   } catch (error) {
     logger.error(`Error occured during prettifying code : `, { error });
-    return { error, data: null };
+    return { error, prettifyError: null, formattedCode: null };
   }
 };
 

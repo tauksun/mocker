@@ -13,7 +13,7 @@ const storeApiData = async ({
     const { storeApiDataURL } = constants;
 
     const { error, data } = await networkCall({
-      method: "GET",
+      method: "POST",
       url: storeApiDataURL + `/${apiId}`,
       payload: {
         code,

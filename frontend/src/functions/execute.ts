@@ -13,7 +13,7 @@ const testExecute = async ({
     const { executeURL } = constants;
 
     const { error, data } = await networkCall({
-      method: "GET",
+      method: "POST",
       url: executeURL + `/${apiId}`,
       payload: {
         code,
