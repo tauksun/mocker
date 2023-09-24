@@ -11,13 +11,15 @@ const prettifyCode = async ({
 }> => {
   try {
     if (!code) {
-      throw "No code passed";
+      return { error: null, result: "" };
     }
     const prettyCode = await prettier.format(code, {
       semi: true,
       parser: "babel",
+      printWidth: 1000,
     });
     return {
+      error: null,
       result: prettyCode,
     };
   } catch (error) {

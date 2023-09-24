@@ -6,6 +6,7 @@ import {
   getApiData,
   storeApiData,
   apiExecutor,
+  prettifyUserCode,
 } from "../controller";
 
 const router = Router();
@@ -21,5 +22,7 @@ router.get("/api/data/:id", getApiData);
 router.post("/api/data/:id", storeApiData);
 
 router.post("/api/execute/:id/*", apiExecutor);
+
+router.post("/api/prettify", prettifyUserCode);
 
 export default router;

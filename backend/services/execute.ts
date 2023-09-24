@@ -1,5 +1,5 @@
 import { execSync } from "child_process";
-import { logger } from "../utils";
+import { logger, uglifyCode } from "../utils";
 import { join } from "path";
 import templateCode from "./executionTemplate";
 
@@ -8,11 +8,13 @@ const execute = async ({
   headers,
   queryParams,
   pathParams,
+  reqBody = {},
 }: {
   code: string;
   headers: any;
   queryParams: any;
   pathParams: any;
+  reqBody?: any;
 }): Promise<{
   error?: any;
   result: string | null;
@@ -32,10 +34,21 @@ const execute = async ({
       queryParams,
       pathParams,
       code: Buffer.from(code),
+      body: reqBody,
     });
 
+    logger(`Uglifying templateWrappedCode...`);
+    const { error: uglifyError, uglifiedCode } = uglifyCode({
+      code: templateWrappedCode,
+    });
+
+    if (uglifyError || !uglifiedCode) {
+      logger(`Error occured while uglifying code : `, { uglifyError });
+      throw uglifyError;
+    }
+
     result = execSync(
-      `node ${pathToExecuteUserCode} ${JSON.stringify(templateWrappedCode)}`,
+      `node ${pathToExecuteUserCode} ${JSON.stringify(uglifiedCode)}`,
       {}
     );
 

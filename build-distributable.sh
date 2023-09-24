@@ -20,11 +20,21 @@ cp -r ./logs ./dist
 
 cd ..
 
-echo 'Building Frontend  : ::: : TODO : ::: :'
-#
-##
-#
-#
+## Frontend ##
+echo 'Building Frontend...'
+cd ./frontend
+
+echo 'Removing previous frontend build ...'
+if [ -d "./dist" ]
+then
+    rm -rf ./dist
+fi
+
+echo 'Installing node_modules ...'
+npm install
+npm run build
+
+cd ..
 
 echo 'Building final distributable ...'
 if [ -d "./dist" ]
@@ -32,12 +42,12 @@ then
     rm -rf ./dist
 fi
 
-
 mkdir ./dist
 
 echo 'Copying backend distributable to final distributable...'
 cp -r ./backend/dist/* ./dist
-echo 'Copying frontend distributable to final distributable... :::: TODO ::::'
+echo 'Copying frontend distributable to final distributable...'
+cp -r ./frontend/dist ./dist/frontend
 
 
 echo 'Copying environment variables & configuration files ...'

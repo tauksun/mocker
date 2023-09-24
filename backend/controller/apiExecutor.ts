@@ -10,7 +10,7 @@ const apiExecutor = async (req: Request, res: Response) => {
     logger("Hit to execute api ...");
 
 
-    const payload = req.body;
+    const reqBody = req.body;
     const headers = req.headers;
     const queryParams = req.query;
     const pathParams = req.params;
@@ -45,6 +45,7 @@ const apiExecutor = async (req: Request, res: Response) => {
       headers,
       queryParams,
       pathParams,
+      reqBody
     });
 
     if (error) {

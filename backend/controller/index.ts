@@ -4,6 +4,7 @@ import createApi from "./createApi";
 import getApiData from "./getApiData";
 import storeApiData from "./storeApiData";
 import apiExecutor from "./apiExecutor";
+import prettifyUserCode from "./prettify";
 
 export {
   healthCheck,
@@ -12,4 +13,5 @@ export {
   getApiData,
   storeApiData,
   apiExecutor,
+  prettifyUserCode,
 };
