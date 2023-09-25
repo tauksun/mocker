@@ -1,4 +1,4 @@
-const selfURL = "http://localhost:5173";
+const selfURL = "http://localhost:1234";
 const backendBaseURL = "http://localhost:1234";
 const createApiURL = backendBaseURL + "/api";
 const getApiDataURL = backendBaseURL + "/api/data";

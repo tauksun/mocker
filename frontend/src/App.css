@@ -3,6 +3,7 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  background-color: whitesmoke;
 }
 
 #homepageHeading {
@@ -25,20 +26,19 @@
 
 #userPage {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 }
 
 #userCode {
   display: flex;
-  flex-direction: row;
+  flex-direction:column;
   justify-content: space-evenly;
   align-items: center;
   width: 100%;
 }
 
-#userCodeArea,
 #optionsAndResponseOptions,
 #optionsAndResponseArea,
 #userCodeRequestOptions {
@@ -48,10 +48,26 @@
   margin: 1rem;
 }
 
+#userCodeArea {
+  border: 1px solid black;
+  height: 500px;
+  width: 500px;
+  margin: 1rem;
+}
+
 #optionsAndResponse {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   width: 100%;
+}
+
+#optionsAndResponseOptions{
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    justify-content:space-evenly;
+    align-items:center;
+
 }

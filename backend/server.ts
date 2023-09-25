@@ -29,6 +29,8 @@ server.use("/", express.static(pathToStaticFiles));
 // Routes
 server.use(router);
 
+server.use("*", express.static(pathToStaticFiles));
+
 // Error Handler
 server.use(errorHandler);
 

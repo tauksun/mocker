@@ -1,4 +1,6 @@
+// @ts-nocheck
 import { useEffect, useState } from "react";
+import { selfURL } from "../config/constants";
 import { constants } from "../config/index";
 import {
   prettifyCode,
@@ -32,6 +34,7 @@ function Userpage() {
       setPrettifyError(prettifyError || error);
     } else {
       setFormattedCode(formattedCode);
+      setUserCode(formattedCode);
       isCodeValid = true;
     }
     return isCodeValid;
@@ -64,13 +67,17 @@ function Userpage() {
         apiId,
         code: userCode,
       });
-      setApiResponse(JSON.stringify(data || error));
+      if (!error) {
+        setApiResponse(JSON.stringify(data));
+      } else {
+        setApiResponse(JSON.stringify(error));
+      }
     }
   };
 
   const gotoHomePage = () => {
     const homepageURL = constants.selfURL;
-    window.location.replace(homepageURL);
+    window.location.href = homepageURL;
   };
 
   useEffect(() => {
@@ -124,25 +131,33 @@ function Userpage() {
     <div id="userPageParent">
       {" "}
       <div id="userPage">
-        <Heading text={"API : " + apiId} type="h4" />
         <div id="userCode">
-          <div id="userCodeRequestOptions">
-            <Heading text="Params" type="h5" />
-          </div>
           <div id="userCodeArea">
             <Heading text="Code" type="h5" />
             <textarea
               id="userCodeTextArea"
               name="apiCode"
               autoFocus
-              rows="8"
+              rows="18"
               cols="48"
               onChange={modifyUserCode}
               value={userCode}
+              spellcheck="false"
             ></textarea>
           </div>
         </div>
         <div id="optionsAndResponse">
+          <div id="optionsAndResponseArea">
+            <Heading text="Response" type="h5" />
+            <textarea
+              id="responseTextArea"
+              name="apiResponse"
+              rows="8"
+              cols="48"
+              value={apiResponse}
+              spellcheck="false"
+            ></textarea>
+          </div>
           <div id="optionsAndResponseOptions">
             <br />
             <CustomButton
@@ -151,30 +166,26 @@ function Userpage() {
               onClickFunc={saveCode}
             />
             <br />
-            <br />
             <CustomButton
               text="Execute"
               variant="warning"
               onClickFunc={executeCode}
             />
             <br />
-            <br />
             <CustomButton
               text="Homepage"
               variant="dark"
               onClickFunc={gotoHomePage}
             />
-          </div>
-          <div id="optionsAndResponseArea">
-            <Heading text="Response" type="h5" />
-            <textarea
-              id="responseTextArea"
-              name="apiResponse"
-              autoFocus
-              rows="8"
-              cols="48"
-              value={apiResponse}
-            ></textarea>
+            <br />
+            <div>
+              <Heading text={"Method : POST"} type="h5" />
+              <hr></hr>
+              <Heading
+                text={"URL : " + `${selfURL}/api/execute/${apiId}/`}
+                type="h5"
+              />
+            </div>
           </div>
         </div>
       </div>

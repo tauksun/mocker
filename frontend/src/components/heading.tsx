@@ -1,3 +1,4 @@
+// @ts-nocheck
 function Heading({ text, type }: { text: string; type: string }) {
   let heading = "";
   switch (type) {
