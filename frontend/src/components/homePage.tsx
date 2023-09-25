@@ -18,6 +18,7 @@ async function createApiAndRedirectToUserPage() {
 function Homepage() {
   return (
     <>
+      <img src="/shadowClone.png" height="250" width="250" />
       <div id="homepageHeading">
         <Heading type="h1" text="Shadow Clone" />
       </div>
